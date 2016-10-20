@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://www.example.net/test" targetNamespace="http://www.example.net/test"
+	elementFormDefault="qualified">
+
+	<xsd:element name="validators" type="validators"></xsd:element>
+
+	<xsd:element name="servletValidator" type="servletValidator"></xsd:element>
+
+	<xsd:complexType name="servletValidator">
+		<xsd:sequence>
+			<xsd:element ref="validator" maxOccurs="unbounded"
+				minOccurs="1">
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="servletUrl" type="xsd:string" use="required"></xsd:attribute>
+	</xsd:complexType>
+
+	<xsd:complexType name="validator">
+		<xsd:sequence>
+			<xsd:element ref="validateParam" maxOccurs="unbounded"
+				minOccurs="1">
+			</xsd:element>
+		</xsd:sequence>
+
+		<xsd:attribute name="validatorClass" type="xsd:string"
+			use="required"></xsd:attribute>
+		<xsd:anyAttribute  processContents="lax"/>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="validateParam">
+		<xsd:attribute name="name" type="xsd:string" use="required"></xsd:attribute>
+		<xsd:attribute name="errorCode" type="xsd:string" use="required"></xsd:attribute>
+	</xsd:complexType>
+
+	<xsd:element name="validator" type="validator"></xsd:element>
+	<xsd:element name="validateParam" type="validateParam"></xsd:element>
+
+
+    <xsd:complexType name="validators">
+    	<xsd:sequence>
+    		<xsd:element ref="errorResultClass" maxOccurs="1" minOccurs="0"></xsd:element>
+    		<xsd:element ref="servletValidator" maxOccurs="unbounded" minOccurs="1"></xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+
+    
+
+    <xsd:element name="errorResultClass" type="xsd:string"></xsd:element>
+</xsd:schema>

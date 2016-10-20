@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<validators xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.example.net/test" xsi:schemaLocation="http://www.example.net/test validateParam.xsd">
+
+	<!--  <errorResultClass></errorResultClass>-->
+	<servletValidator servletUrl="/testServlet">
+
+		<validator validatorClass="org.paramvalidate.validator.NullValidator">
+			<validateParam name="id" errorCode="010101" />
+			<validateParam name="content" errorCode="010112" />
+			<validateParam name="name" errorCode="010113" />
+		</validator>
+		
+	</servletValidator>
+</validators>
